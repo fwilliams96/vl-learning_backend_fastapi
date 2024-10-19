@@ -1,0 +1,12 @@
+env/
+v/
+__pycache__/
+*.py[cod]
+.space
+*.env*
+*.v*
+*.exe
+*.wav
+*.mp3
+*.png
+Spacefile
