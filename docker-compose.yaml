@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
-version: '3'
+version: '3.9'
 services:
   app:
     image: informaticoloco/vl-learning_backend:latest  # Imagen que subiste a Docker Hub
