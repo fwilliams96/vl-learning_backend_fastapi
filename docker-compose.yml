@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+version: '3'
+services:
+  app:
+    image: informaticoloco/vl-learning_backend:latest  # Imagen que subiste a Docker Hub
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV_VAR=production  # Si tienes variables de entorno
+    restart: always
