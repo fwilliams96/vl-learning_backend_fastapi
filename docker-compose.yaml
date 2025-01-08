@@ -2,12 +2,15 @@
 version: '3.9'
 services:
   app:
-    image: informaticoloco/vl-learning_backend:latest  # Imagen que subiste a Docker Hub
+    #image: informaticoloco/vl-learning_backend:latest  # Imagen que subiste a Docker Hub
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:
       - ENVIRONMENT=LOCAL  # Si tienes variables de entorno
-      - MONGO_URI=mongodb://root:example@mongodb:27017  # Cadena de conexión en local
+      - MONGO_URI=mongodb://root:password@mongodb:27017  # Cadena de conexión en local
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ELEVEN_LABS_API_KEY=${ELEVEN_LABS_API_KEY}
     depends_on:
@@ -22,4 +25,4 @@ services:
       - ./data/mongodb:/data/db  # Ruta en local para almacenar los datos de MongoDB
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_ROOT_PASSWORD=password
