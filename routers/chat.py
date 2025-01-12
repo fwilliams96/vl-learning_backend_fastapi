@@ -29,7 +29,7 @@ FUNNY_PERSON_CONTEXT = '''
                 '''
 
 @router.post('/chat')
-async def chat(user_message: Message):
+async def chat(user_id: str, user_message: Message):
     print(user_message.content)
     ai_messages = get_ai_messages(user_message.content)
 
