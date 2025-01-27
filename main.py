@@ -6,10 +6,10 @@ from openai import OpenAI
 from app.chat.domain.message import Message
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers.chat import router as chat_router
-from routers.listening import router as listenings_router
-from routers.pronunciation import router as pronunciations_router
-from routers.description import router as descriptions_router
+from routers.chats import router as chat_router
+from routers.listenings import router as listenings_router
+from routers.pronunciations import router as pronunciations_router
+from routers.descriptions import router as descriptions_router
 #from routers.images import router as images_router
 #from routers.role_play import router as role_play_router
 

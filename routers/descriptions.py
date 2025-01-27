@@ -1,4 +1,4 @@
-from fastapi import APIRouter, BackgroundTasks, HTTPException, status
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Header, status
 
 from app.description.application.description_finder import DescriptionFinder
 from app.description.application.description_generator import DescriptionGenerator
@@ -7,10 +7,10 @@ from app.description.application.description_updater import DescriptionUpdater
 from app.description.domain.description import Description, DescriptionResult, UserDescription, UserDescriptionFormat
 from app.shared.application.speech_to_text_converter import SpeechToTextConverter
 
-router = APIRouter(prefix='/description', tags=["description"], responses={status.HTTP_404_NOT_FOUND: {"message": "Not found"}})
+router = APIRouter(prefix='/api/v1/descriptions', tags=["descriptions"], responses={status.HTTP_404_NOT_FOUND: {"message": "Not found"}})
 
-@router.post('/', response_model=Description, status_code=status.HTTP_200_OK)
-def create_user_description():
+@router.post('', response_model=Description, status_code=status.HTTP_200_OK)
+def create_user_description(x_user_id: str = Header(None, alias="X-User-Id")):
     return DescriptionGenerator().generate()
 
 @router.get('/{user_description_id}', response_model=Description, status_code=status.HTTP_200_OK)

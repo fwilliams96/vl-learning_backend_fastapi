@@ -1,4 +1,4 @@
-from fastapi import APIRouter, BackgroundTasks, HTTPException, status
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Header, status
 
 from app.pronunciation.application.pronunciation_analyzer import PronunciationAnalyzer
 from app.pronunciation.application.pronunciation_finder import PronunciationFinder
@@ -6,10 +6,10 @@ from app.pronunciation.application.pronunciation_generator import PronunciationG
 from app.pronunciation.application.user_pronunciation_updater import PronunciationUpdater
 from app.pronunciation.domain.pronunciation import Pronunciation, UserSpeech
 
-router = APIRouter(prefix='/pronunciation', tags=["pronunciation"], responses={status.HTTP_404_NOT_FOUND: {"message": "Not found"}})
+router = APIRouter(prefix='/api/v1/pronunciations', tags=["pronunciations"], responses={status.HTTP_404_NOT_FOUND: {"message": "Not found"}})
 
-@router.post('/', response_model=Pronunciation, status_code=status.HTTP_200_OK)
-def create_user_pronunciation():
+@router.post('', response_model=Pronunciation, status_code=status.HTTP_200_OK)
+def create_user_pronunciation(x_user_id: str = Header(None, alias="X-User-Id")):
     return PronunciationGenerator().generate()
 
 @router.get('/{pronunciation_id}', response_model=Pronunciation, status_code=status.HTTP_200_OK)
