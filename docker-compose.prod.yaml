@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+version: '3.9'
+services:
+  app:
+    image: <image>  # Imagen que subiste a Docker Hub
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=PROD  # Si tienes variables de entorno
+      - MONGO_URI=${MONGO_URI}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ELEVEN_LABS_API_KEY=${ELEVEN_LABS_API_KEY}
+      - ELEVEN_LABS_VOICE_ID=${ELEVEN_LABS_VOICE_ID}
+      - ELEVEN_LABS_URL=https://api.elevenlabs.io
+    depends_on:
+      - mongodb
+    restart: always
